@@ -205,7 +205,7 @@ var _hp = 100;
 var _speed = 100;
 
 
-var levelIndex = 1 + parseInt(Math.random()*7);
+var levelIndex = 1 + parseInt(Math.random()*4);
 init();
 
 function init() { 
@@ -222,9 +222,16 @@ function updateInfo(exp) {
     levelIndex = levelExp.findIndex(function(ele) {
         return ele > _exp;
     });
-    infoLevel.innerText = levelIndex == 0 ? levelName[0] : levelName[levelIndex - 1];
+    
+    if (levelIndex == 0) {
+        infoLevel.innerText = "庶人";
+    } else if (levelIndex < 0) {
+        infoLevel.innerText = levelName[levelName.length - 1]
+    } else {
+        infoLevel.innerText = levelName[levelIndex - 1];
+    }
     infoCurExp.innerText = _exp;
-    infoNeedExp.innerText = levelExp[levelIndex];
+    infoNeedExp.innerText = levelIndex < 0 ? "inf" : levelExp[levelIndex];
     infoHP.innerText = _hp;
     infoSpeed.innerText = _speed;
     
@@ -287,7 +294,7 @@ function pk(){
             _hp -= parseInt(Math.random() * 10);
             _speed += parseInt(Math.random() * 10);       
         }else{
-            var increasedExp = parseInt(enemy.speed * 1.5 + mySpeed);
+            var increasedExp = parseInt(enemy.speed * 1.5 + _speed);
             process.innerText += '你成功击败' + enemy.name + '， 增加' + increasedExp + '点经验值。'; 
             _exp += increasedExp;
             _hp += parseInt(Math.random() * 20);
