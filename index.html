@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+/**{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.box{
+    position: relative;
+    width: 800px;
+    height: 800px;
+    margin: 0 auto;
+}
+.p0{
+    text-align: center;
+}
+.p1{
+    display: inline-block;
+    width: 150px;
+    height: 100px;
+    text-align: center;
+    margin-left: 100px;
+}
+
+.p2{
+    position: absolute;
+    display: inline-block;
+    width: 150px;
+    height: 100px;
+    text-align: center;
+    right: 100px;
+
+}
+.vs{
+    position: absolute;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    left: 380px;
+
+}
+.main{
+    width: 800px;
+    height: 696px;
+}
+
+
+.main .middle{
+    display: inline-block;
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 143px;
+    right: 250px;
+}
+
+.start{
+    position: absolute;
+    top: 152px;
+    left: 360px;
+}*/
+</style>
+</head>
+
+<body>
+<!--     <div class="box">
+        <br>
+        <div class="p0">【姓名】甄嬛 【位分】妃 【经验值】1452/2000</div>
+        <br>
+        <div class="p1"><p class="name">甄嬛</p><span>hp:</span><span id="myHp">100</span><span>心机</span><span id="mySpeed">75</span></div>
+        <div class="vs"><span>V S</span></div>
+        <div class="p2"><p class="name">对手</p><span>hp:</span><span id="hp">100</span><span>心机</span><span id="speed">75</span></div>
+        <div class="main">
+            <button class="start">开始宫斗</button>
+            <div class="middle"></div>
+        </div>
+    </div> -->
+    <div style="display: table; width: 100%; margin: 10px 10px 10px 10px;">
+        <div class = "left" style=" display: table-cell;  width: 300px; border-right: 1px solid gray" >
+            <p style="color:red;">👑 = 玩家资料 = 👑</p>
+            <p>【姓名】甄嬛</p>
+            <p>【位分】<span id="level">嫔</span></p>
+            <p>【经验值】<span id="curExp">1850</span> / <span id="needExp">2000</span></p>
+            <p>【HP】<span id="maxHP">100</span></p>
+            <p>【心机】<span id="maxSpeed">100</span></p>
+            <br>
+            <hr>
+            <br>
+            <div style="">
+                <p style="color: red;">🌺~ 晋封消息 ~ 🌺</p>
+                <div class="news" style="width: 300px; ">
+                    <!-- <p>初入宫闱得到皇帝临幸，被封为【贵人】</p>
+                    <p>在宫斗中过关斩将，被封为【嫔】</p>
+                    <p>在宫斗中过关斩将，被封为【妃】</p>
+                    <p>在宫斗中过关斩将，被封为【贵妃】</p>
+                    <p>在宫斗中过关斩将，被封为【皇贵妃】</p>
+                    <p>在宫斗中惨遭陷害，被降为【答应】</p>
+                    <p>在宫斗中过关斩将，被封为【嫔】</p>
+                    <p>在宫斗中过关斩将，被封为【妃】</p>
+                    <p>在宫斗中过关斩将，被封为【贵妃】</p>
+                    <p>在宫斗中过关斩将，被封为【皇贵妃】</p>
+                    <p>在宫斗中惨遭陷害，被降为【答应】</p> -->
+                </div>
+            </div>
+        </div>
+        <div class = "right" style="display: table-cell;">
+            <div style="display: table; width: 100%">
+                <div style="display: table-cell; text-align: center;">
+                    <p>甄嬛</p>
+                    <p>HP: <span id="myHp">100</span></p>
+                    <p>心机: <span id="mySpeed">100</span></p>
+                </div>
+                <div style="display: table-cell; text-align: center;">
+                    <p>------</p>
+                    <p>V.S.</p>
+                    <p>------</p>
+                </div>
+                <div style="display: table-cell; text-align: center;">
+                    <p><span id="name">对手</span></p>
+                    <p>HP: <span id="hp">999</span></p>
+                    <p>心机: <span id="speed">999</span></p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px; ">
+                <button style="font-size: 20px" class="start">开始宫斗</button>
+                <div class="middle" style="text-align: left; width: 70%; margin-left: auto; margin-right: auto;"></div>
+            </div>
+    
+        </div>
+        
+    </div>
+</body>
+
+<script>
+
+var myHp = document.getElementById('myHp');
+var mySpeed = document.getElementById('mySpeed');
+var oName = document.getElementById('name');
+var oHp = document.getElementById('hp');
+var oSpeed = document.getElementById('speed');
+var oBtn = document.getElementsByClassName('start')[0];
+var middle = document.getElementsByClassName('middle')[0];
+var startBtn = document.getElementsByClassName("start")[0];
+var newsBox = document.getElementsByClassName("news")[0];
+
+var infoLevel = document.getElementById("level");
+var infoCurExp = document.getElementById("curExp");
+var infoNeedExp = document.getElementById("needExp");
+var infoHP = document.getElementById("maxHP");
+var infoSpeed = document.getElementById("maxSpeed");
+
+var turn = 1;
+var circle = true;
+
+var person = [
+    {
+        name: '安陵容',
+        hp: 105,
+        speed :100,
+        skill: ["对你使用了舒痕胶", "向皇上展示了冰嬉", "对你投放了麝香"]
+    },
+    {
+        name : '华妃',
+        hp : 130,
+        speed :90,
+        skill: ["赏了你一丈红", "送了你一盘酸黄瓜", "对你说了句贱人就是矫情"]
+    },
+    {
+        name : '皇后',
+        hp : 200,
+        speed :130,
+        skill: ["向皇上提起了纯元皇后", "头风又发作了", "受到太后庇佑"]
+    },
+    {
+        name : '沈眉庄',
+        hp : 115,
+        speed :110,
+        skill: ["生病了找温太医", "说自己只读过《女则》和《女训》", "在宫里放满了菊花"]
+    },
+    {
+        name : '敬妃',
+        hp : 120,
+        speed :120,
+        skill: ["向你丢出了一块宫里的砖石", "发动了胧月大魔王", "被皇上推了一下"]
+    }
+];
+
+var levelName = ["官女子", "答应", "常在", "贵人", "嫔", "妃", "贵妃", "皇贵妃", "皇后", "皇太后", "皇太后★", "皇太后★★", "皇太后★★★"];
+var levelExp = [1, 100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200, 102400, 204800];
+
+var mySkill = ["装逼", "搞外遇", "侍寝"];
+var index = 0;
+var enemy = null;
+var intervalId = "";
+
+var _exp = 0;
+var _hp = 100;
+var _speed = 100;
+
+
+var levelIndex = 1 + parseInt(Math.random()*7);
+init();
+
+function init() { 
+    _exp = levelExp[levelIndex - 1];
+    updateInfo(_exp);
+    var news = document.createElement('p');
+    news.innerText = '初入宫闱得到皇帝临幸，被封为【' + infoLevel.innerText + '】';
+    newsBox.appendChild(news);
+}
+
+function updateInfo(exp) {
+    console.log(exp);
+    oldIndex = levelIndex;
+    levelIndex = levelExp.findIndex(function(ele) {
+        return ele > _exp;
+    });
+    infoLevel.innerText = levelIndex == 0 ? levelName[0] : levelName[levelIndex - 1];
+    infoCurExp.innerText = _exp;
+    infoNeedExp.innerText = levelExp[levelIndex];
+    infoHP.innerText = _hp;
+    infoSpeed.innerText = _speed;
+    
+    var news = document.createElement('p');
+    if (levelIndex > oldIndex) {
+        news.innerText = "在宫斗中过关斩将, 被晋封为【" + infoLevel.innerText + "】";
+    } else if (levelIndex < oldIndex) {
+        news.innerText = "在宫斗中惨遭陷害, 被降为【" + infoLevel.innerText + "】";
+    }
+    newsBox.appendChild(news);
+
+}
+
+
+oBtn.onclick = function(){
+    startBtn.disabled = true;
+    middle.innerText = ""
+    myHp.innerText = _hp;
+    mySpeed.innerText = _speed;
+    turn = 1;
+    startPK();
+}
+
+
+
+function startPK(){
+    index = parseInt(Math.random()*person.length);
+    enemy = person[index];
+    oName.innerText = enemy.name;
+    oHp.innerText = enemy.hp;
+    oSpeed.innerText = enemy.speed;
+    intervalId = setInterval('pk()',200);
+}
+
+function pk(){
+    if(oHp.innerText > 0 && myHp.innerText > 0){
+        var process = document.createElement('p');
+        if(circle){
+            var index2 = parseInt(Math.random() * mySkill.length);
+            var damage = parseInt(Math.random() * _speed / 3);
+            process.innerText = '【第' + turn + '回合】 你' + mySkill[index2] + ", 对" + enemy.name + "造成" + damage + "点伤害。";
+            oHp.innerText -= damage;
+        }else{
+            var index2 = parseInt(Math.random() * enemy.skill.length);
+            var damage = parseInt(Math.random() * enemy.speed / 3);
+            process.innerText = '【第' + turn + '回合】 ' + enemy.name + enemy.skill[index2] + "对你造成" + damage + "点伤害。";
+            myHp.innerText -= damage;
+        }
+        turn = turn + 1;
+        middle.appendChild(process);
+        circle = !circle;
+    }else{
+        var process = document.createElement('p');
+        process.style.color = "red";
+        process.innerText = '【宫斗结束】';
+        if(myHp.innerText <= 0){ 
+            var reducedExp = enemy.speed;   
+            process.innerText += '你被' + enemy.name + '击败， 扣除' + reducedExp + '点经验值。';  
+            _exp -= reducedExp; 
+            _hp -= parseInt(Math.random() * 10);
+            _speed += parseInt(Math.random() * 10);       
+        }else{
+            var increasedExp = parseInt(enemy.speed * 1.5 + mySpeed);
+            process.innerText += '你成功击败' + enemy.name + '， 增加' + increasedExp + '点经验值。'; 
+            _exp += increasedExp;
+            _hp += parseInt(Math.random() * 20);
+            _speed += parseInt(Math.random() * 20);  
+        }
+        middle.appendChild(process);
+        startBtn.disabled = false;
+        clearInterval(intervalId);
+        updateInfo(_exp);
+    }
+
+}
+
+</script>
+</html>
+
+
+
